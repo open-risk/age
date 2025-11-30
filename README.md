@@ -1,3 +1,3 @@
-# AGE is Accounting Graph Environment
+# AGE is an Accounting Graph Environment
 
 
