@@ -17,12 +17,12 @@ class ManagerModelTests(TestCase):
         test_graph = nx.MultiDiGraph(label='Test Graph X')  # empty graph
         test_graph.add_node('A1')
         test_graph.add_node('B1')
-        test_graph.add_edge('A1', 'B1', label='TX', weight=np.array([1.0, 0.5, 0.2]))
+        test_graph.add_edge('A1', 'B1', key='TX', weight=np.array([1.0, 0.5, 0.2]))
 
         for node, data in test_graph.nodes(data=True):
             print(node, data)
         for u, v, k, d in test_graph.edges(keys=True, data=True):
-            print(u, "->", v, "label =", d['label'], "weight =", d['weight'])
+            print(u, "->", v, "label =", k, "weight =", d['weight'])
 
         # step 2
 
@@ -38,5 +38,8 @@ class ManagerModelTests(TestCase):
         for node, data in stored_graph.nodes(data=True):
             print(node, data)
         for u, v, k, d in stored_graph.edges(keys=True, data=True):
-            print(u, "->", v, "label =", d['label'], "weight =", d['weight'])
+            print(u, "->", v, "label =", k, "weight =", d['weight'])
         self.assertEqual(True, nx.is_isomorphic(test_graph, stored_graph))
+
+        # Does not work for vector weights
+        # self.assertEqual(True, nx.utils.graphs_equal(test_graph, stored_graph))

@@ -2,3 +2,4 @@ django
 owlready2
 networkx
 numpy
+scipy

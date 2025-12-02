@@ -11,16 +11,15 @@ class Entity(models.Model):
     def store_networkx_graph(self, nx_graph):
 
         # get and store all nodes of the graph
-        for node, data in nx_graph.nodes(data=True):
-            dj_node = Account.objects.create(label=node, graph=self)
-            dj_node.save()
+        for account, data in nx_graph.nodes(data=True):
+            dj_account = Account.objects.create(label=account, graph=self)
+            dj_account.save()
 
         # get and store all edges of the graph
         for u, v, k, d in nx_graph.edges(keys=True, data=True):
-            dj_u = Account.objects.get(label=u)
-            dj_v = Account.objects.get(label=v)
-            dj_edge = Transaction.objects.create(label=d['label'], graph=self, weight=d['weight'].tolist(), source=dj_u,
-                                                 target=dj_v)
+            dj_u = Account.objects.get(label=u, graph=self)
+            dj_v = Account.objects.get(label=v, graph=self)
+            dj_edge = Transaction.objects.create(label=k, graph=self, weight=d['weight'].tolist(), source=dj_u, target=dj_v)
             dj_edge.save()
 
     def get_networkx_graph(self):
@@ -30,15 +29,16 @@ class Entity(models.Model):
         """
         graph = nx.MultiDiGraph()
 
-        # get all nodes of the graph
-        nodes = self.node_set.all()
-        for node in nodes:
-            graph.add_node(node.label)
+        # get all accounts of the graph
+        accounts = self.account_set.all()
+        for account in accounts:
+            graph.add_node(account.label)
 
-        # get all edges of the graph
-        edges = self.edge_set.all()
-        for edge in edges:
-            graph.add_edge(edge.source.label, edge.target.label, label=edge.label, weight=edge.weight)
+        # get all transactions of the graph
+        transactions = self.transaction_set.all()
+        for transaction in transactions:
+            graph.add_edge(transaction.source.label, transaction.target.label, key=transaction.label,
+                           weight=transaction.weight)
 
         return graph
 
