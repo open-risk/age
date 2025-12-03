@@ -3,18 +3,18 @@ from django.contrib import admin
 from graph.models import Account, Transaction, Entity
 
 
-class NodeAdmin(admin.ModelAdmin):
+class AccountAdmin(admin.ModelAdmin):
     save_as = True
 
 
-class EdgeAdmin(admin.ModelAdmin):
+class TransactionAdmin(admin.ModelAdmin):
     save_as = True
 
 
-class GraphAdmin(admin.ModelAdmin):
+class EntityAdmin(admin.ModelAdmin):
     save_as = True
 
 
-admin.site.register(Account, NodeAdmin)
-admin.site.register(Transaction, EdgeAdmin)
-admin.site.register(Entity, GraphAdmin)
+admin.site.register(Account, AccountAdmin)
+admin.site.register(Transaction, TransactionAdmin)
+admin.site.register(Entity, EntityAdmin)

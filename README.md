@@ -1,10 +1,17 @@
 # AGE is an Accounting Graph Environment
 
-The project explores the representation of various accounting concepts using graph theory. The theoretical concepts underpinning the code structure and functionality are documented in a number of white papers which are available in the *docs* directory.
+The project explores the representation of various accounting concepts using graph theory. 
+
+## Background reading
+
+The theoretical concepts underpinning the AGE code structure and functionality are documented in a number of white papers which are available in the *docs* directory.
 
 * [WP19](docs/OpenRiskWP19_111125.pdf)
 
-First some background about accounting graphs.
+
+## About Accounting Graphs
+
+Accounting graphs are mathematical representations of accounting using the tools of graph theory.
 
 ## Double-entry graphs
 

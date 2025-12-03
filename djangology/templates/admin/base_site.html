@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+
+{% block title %}
+    {% if subtitle %}{{ subtitle }} | {% endif %}
+    {{ title }} | {{ site_title|default:_('AGE site admin') }}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name" style="font-family: cursive;"><a href="{% url 'admin:index' %}">AGE Administration</a>
+    </h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

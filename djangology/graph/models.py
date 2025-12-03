@@ -19,7 +19,8 @@ class Entity(models.Model):
         for u, v, k, d in nx_graph.edges(keys=True, data=True):
             dj_u = Account.objects.get(label=u, graph=self)
             dj_v = Account.objects.get(label=v, graph=self)
-            dj_edge = Transaction.objects.create(label=k, graph=self, weight=d['weight'].tolist(), source=dj_u, target=dj_v)
+            dj_edge = Transaction.objects.create(label=k, graph=self, weight=d['weight'].tolist(), source=dj_u,
+                                                 target=dj_v)
             dj_edge.save()
 
     def get_networkx_graph(self):
@@ -42,6 +43,13 @@ class Entity(models.Model):
 
         return graph
 
+    def __str__(self):
+        return f"{self.label}"
+
+    class Meta:
+        verbose_name = "Entity"
+        verbose_name_plural = "Entities"
+
 
 class Account(models.Model):
     """
@@ -52,12 +60,15 @@ class Account(models.Model):
                               help_text='Entity to which the Account belongs')
 
     def __str__(self):
-        return self.label or f"Node {self.pk}"
+        return f"{self.graph.label} : {self.label} ({self.pk})"
 
     class Meta:
         indexes = [
             models.Index(fields=["label"]),
         ]
+
+        verbose_name = "Account"
+        verbose_name_plural = "Accounts"
 
 
 class Transaction(models.Model):
@@ -91,7 +102,7 @@ class Transaction(models.Model):
 
     def __str__(self):
         k = f" ({self.label})" if self.label else ""
-        return f"{self.source} -> {self.target}{k}"
+        return f"{self.graph.label} : {self.source} -> {self.target}{k}"
 
     class Meta:
         indexes = [
@@ -99,3 +110,6 @@ class Transaction(models.Model):
             models.Index(fields=["target", "source"]),
             models.Index(fields=["label"]),
         ]
+
+        verbose_name = "Transaction"
+        verbose_name_plural = "Transactions"
