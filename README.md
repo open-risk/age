@@ -45,3 +45,18 @@ The incidence matrix representation offers a systematic way to mirror external t
 An arbitrary number of entities can be added.
 
 ![QEB Accounting](images/qeb_accounting_graph.png)
+
+
+## Persistence of Accounting Graphs
+
+AGE supports two representations of accounting graphs. The first is an in-memory graph as a networkx MultiDiGraph object. The second is a relational database representation (sqlite) that is accessed via the Django ORM (object-relational model) and a number of Django classes (Entity, Account, Transaction). 
+
+The typical workflow supported is that we fetch the graph from storage into a networkx object, work with the accounting graph in memory (analysis etc.) and store it when we are done. 
+
+## Classification of accounts and transactions
+
+Accounts and Transactions can be labeled with arbitrary labels (tags).
+
+Networkx transactions (edges) have both a key (that identifies which transactions from a multi-edge set) and labels (that categorize transactions, e.g. "Purchases")
+
+

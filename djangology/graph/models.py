@@ -1,4 +1,5 @@
 from django.db import models
+from taggit.managers import TaggableManager
 import networkx as nx
 
 
@@ -6,22 +7,25 @@ import networkx as nx
 # https://networkx.org/documentation/latest/reference/classes/multidigraph.html#networkx.MultiDiGraph
 
 class Entity(models.Model):
-    label = models.CharField(max_length=255, null=True, blank=True, db_index=True, help_text='Entity Label')
+    identity = models.CharField(max_length=255, unique=True, db_index=True, help_text='Entity Identity')
 
     def store_networkx_graph(self, nx_graph):
 
-        # get and store all nodes of the graph
+        # get and store all nodes (accounts) of the graph
         for account, data in nx_graph.nodes(data=True):
-            dj_account = Account.objects.create(label=account, graph=self)
+            dj_account = Account.objects.create(identity=account, graph=self)
             dj_account.save()
+            if data['tag']:
+                dj_account.tags.add(data['tag'])
 
         # get and store all edges of the graph
-        for u, v, k, d in nx_graph.edges(keys=True, data=True):
-            dj_u = Account.objects.get(label=u, graph=self)
-            dj_v = Account.objects.get(label=v, graph=self)
-            dj_edge = Transaction.objects.create(label=k, graph=self, weight=d['weight'].tolist(), source=dj_u,
-                                                 target=dj_v)
+        for u, v, key, data in nx_graph.edges(keys=True, data=True):
+            dj_u = Account.objects.get(identity=u, graph=self)
+            dj_v = Account.objects.get(identity=v, graph=self)
+            dj_edge = Transaction.objects.create(identity=key, graph=self, weight=data['weight'].tolist(), source=dj_u, target=dj_v)
             dj_edge.save()
+            if data['tag']:
+                dj_edge.tags.add(data['tag'])
 
     def get_networkx_graph(self):
         """
@@ -33,18 +37,19 @@ class Entity(models.Model):
         # get all accounts of the graph
         accounts = self.account_set.all()
         for account in accounts:
-            graph.add_node(account.label)
+            tags = [tag.name for tag in account.tags.all()]
+            graph.add_node(account.identity, tags=tags)
 
         # get all transactions of the graph
         transactions = self.transaction_set.all()
         for transaction in transactions:
-            graph.add_edge(transaction.source.label, transaction.target.label, key=transaction.label,
-                           weight=transaction.weight)
+            tags = [tag.name for tag in transaction.tags.all()]
+            graph.add_edge(transaction.source.identity, transaction.target.identity, key=transaction.identity, weight=transaction.weight, tags=tags)
 
         return graph
 
     def __str__(self):
-        return f"{self.label}"
+        return f"{self.identity}"
 
     class Meta:
         verbose_name = "Entity"
@@ -55,16 +60,20 @@ class Account(models.Model):
     """
     Graph node (vertex).
     """
-    label = models.CharField(max_length=255, blank=True, db_index=True, help_text='Account Label')
+    identity = models.CharField(max_length=255, unique=True, db_index=True, help_text='Account Identity')
+
+    tags = TaggableManager()
+
+    # TODO provisionally blanks allowed but don't make sense
     graph = models.ForeignKey(Entity, null=True, blank=True, on_delete=models.CASCADE,
                               help_text='Entity to which the Account belongs')
 
     def __str__(self):
-        return f"{self.graph.label} : {self.label} ({self.pk})"
+        return f"{self.graph.identity} : {self.identity} ({self.pk})"
 
     class Meta:
         indexes = [
-            models.Index(fields=["label"]),
+            models.Index(fields=["identity"]),
         ]
 
         verbose_name = "Account"
@@ -75,12 +84,16 @@ class Transaction(models.Model):
     """
     Directed edge with vector weights
     """
-    label = models.CharField(
+    identity = models.CharField(
         max_length=100,
-        blank=True,
-        help_text="edge label",
+        unique=True,
+        help_text="Transaction Identity",
         db_index=True,
     )
+
+    tags = TaggableManager()
+
+    # TODO provisionally blanks allowed but don't make sense
     graph = models.ForeignKey(Entity, null=True, blank=True, on_delete=models.CASCADE,
                               help_text='Entity to which the Transaction belongs')
 
@@ -101,14 +114,13 @@ class Transaction(models.Model):
     weight = models.JSONField(null=True, blank=True, help_text="The vector of weights associated with the transaction")
 
     def __str__(self):
-        k = f" ({self.label})" if self.label else ""
-        return f"{self.graph.label} : {self.source} -> {self.target}{k}"
+        return f"{self.graph.identity} : {self.source} -> {self.target}{self.identity}"
 
     class Meta:
         indexes = [
             models.Index(fields=["source", "target"]),
             models.Index(fields=["target", "source"]),
-            models.Index(fields=["label"]),
+            models.Index(fields=["identity"]),
         ]
 
         verbose_name = "Transaction"

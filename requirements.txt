@@ -1,4 +1,5 @@
 django
+django-taggit
 owlready2
 networkx
 numpy
