@@ -55,8 +55,10 @@ The typical workflow supported is that we fetch the graph from storage into a ne
 
 ## Classification of accounts and transactions
 
-Accounts and Transactions can be labeled with arbitrary labels (tags).
+Both Accounts and Transactions can be labeled with arbitrary labels (tags).
 
-Networkx transactions (edges) have both a key (that identifies which transactions from a multi-edge set) and labels (that categorize transactions, e.g. "Purchases")
+Networkx transactions (edges) have both a key (that identifies which transactions from a multi-edge set) and labels (that categorize transactions, e.g. "Purchases").
+
+A set of predefined Account tags can be loaded to emulate existing accounting standards (e.g. IFRS). The meaning, logical relationships etc. of such tags and any restrictions they might impose on possible graph operations are not explicit. They are enforced by application code.
 
 

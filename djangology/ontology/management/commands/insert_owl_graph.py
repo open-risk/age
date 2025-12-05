@@ -24,4 +24,4 @@ class Command(BaseCommand):
         print(Account.iri)
         my_world.save()
 
-        self.stdout.write(self.style.SUCCESS('Successfully created graph'))
+        self.stdout.write(self.style.SUCCESS('Successfully inserted graph'))
