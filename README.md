@@ -1,6 +1,6 @@
 # AGE is an Accounting Graph Environment
 
-The project explores the representation of various accounting concepts using graph theory. 
+The AGE project explores the representation of various accounting concepts using graph theory. 
 
 ## Background reading
 
@@ -8,6 +8,7 @@ The theoretical concepts underpinning the AGE code structure and functionality a
 
 * [WP19](docs/OpenRiskWP19_111125.pdf)
 
+Further documentation (WIP) available on [Open Risk](https://www.openriskmanagement.com/documentation/age)
 
 ## About Accounting Graphs
 

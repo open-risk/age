@@ -8,132 +8,140 @@
 
 <owl:Ontology rdf:about="http://www.openriskmanual.org/ns/account_ontology.owl"/>
 
-<owl:Class rdf:about="#Asset">
+<owl:Class rdf:about="#Stock">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Flow">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Asset">
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Liability">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Equity">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Inventory">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Cash">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Cash Equivalent">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Trade Receivable">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Share Capital">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Retained Earnings">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Other Equity">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Borrowing">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Provision">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Lease">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Pension">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Deferred Tax">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Income Tax">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Property">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Plant">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Equipment">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Goodwill">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Revenue">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Other Income">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Expense">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Loss">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Cost of Sales">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Depreciation">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Current">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Non-current">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Intangible">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Stock"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Investment">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Financing">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Operating">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf rdf:resource="#Flow"/>
 </owl:Class>
 
 
