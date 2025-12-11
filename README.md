@@ -1,14 +1,19 @@
 # AGE is an Accounting Graph Environment
 
-The AGE project explores the representation of various accounting concepts using graph theory. 
+The AGE project explores the representation of various accounting concepts using graph theory. Currently, the focus of the project is on researching the possibilities and benefits of using property graphs and/or semantic graphs in accounting context.  
 
 ## Background reading
 
 The theoretical concepts underpinning the AGE code structure and functionality are documented in a number of white papers which are available in the *docs* directory.
 
-* [WP19](docs/OpenRiskWP19_111125.pdf)
+* [WP19](docs/OpenRiskWP19_111125.pdf) - Weighted directed multigraph representation applied to model double-entry bookkeeping (DEB) and extended to provide a consistent accounting graph for larger economic networks (quadruple-entry accounting)
+* [WP08](docs/OpenRiskWP08_131219.pdf) - The representation of agent properties, transactions and contracts as property graphs. A typical use case for the proposed framework is the study of credit networks.
 
-Further documentation (WIP) available on [Open Risk](https://www.openriskmanagement.com/documentation/age)
+Further reading and documentation (WIP) is made available on 
+
+* More documentation about [graph-based accounting](docs/graph_accounts.md)
+* [Open Risk Docs](https://www.openriskmanagement.com/documentation/age)
+* [Open Risk Blog](https://www.openriskmanagement.com/mathematical-formulation-of-financial-statements)
 
 ## About Accounting Graphs
 
@@ -16,7 +21,7 @@ Accounting graphs are mathematical representations of accounting using the tools
 
 ## Double-entry graphs
 
-DEB graphs are representations of classic double entry accounting. E.g the classic balance sheet:
+DEB graphs are representations of classic double entry accounting. E.g, the classic balance sheet:
 
 ![Balance Sheet](images/balance.png)
 
@@ -61,5 +66,7 @@ Both Accounts and Transactions can be labeled with arbitrary labels (tags).
 Networkx transactions (edges) have both a key (that identifies which transactions from a multi-edge set) and labels (that categorize transactions, e.g. "Purchases").
 
 A set of predefined Account tags can be loaded to emulate existing accounting standards (e.g. IFRS). The meaning, logical relationships etc. of such tags and any restrictions they might impose on possible graph operations are not explicit. They are enforced by application code.
+
+
 
 

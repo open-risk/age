@@ -1,7 +1,7 @@
-from django.core.management.base import BaseCommand
-from networkx.linalg import incidence_matrix
-import scipy as sp
 import networkx as nx
+import scipy as sp
+from django.core.management.base import BaseCommand
+
 from graph.models import Entity
 
 
@@ -51,5 +51,5 @@ class Command(BaseCommand):
             incidence_tensor.append(a)
 
         for d in range(vector_size):
-            print(80*'-')
+            print(80 * '-')
             print(incidence_tensor[d].todense())

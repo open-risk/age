@@ -1,6 +1,6 @@
 import networkx as nx
 from django.core.management.base import BaseCommand
-import networkx as nx
+
 from graph.models import Entity
 
 

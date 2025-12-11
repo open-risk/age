@@ -1,6 +1,7 @@
 import networkx as nx
 import numpy as np
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
 from graph.models import Entity
 
 

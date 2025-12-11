@@ -6,8 +6,9 @@ class Command(BaseCommand):
     help = 'create a predefined list of account tags'
 
     def handle(self, *args, **kwargs):
-
-        stocks = ['Asset', 'Liability', 'Equity', 'Inventory', 'Cash', 'Cash Equivalent', 'Trade Receivable', 'Share Capital', 'Retained Earnings', 'Other Equity', 'Borrowing', 'Provision', 'Lease', 'Pension', 'Deferred Tax', 'Income Tax', 'Property', 'Plant', 'Equipment', 'Goodwill']
+        stocks = ['Asset', 'Liability', 'Equity', 'Inventory', 'Cash', 'Cash Equivalent', 'Trade Receivable',
+                  'Share Capital', 'Retained Earnings', 'Other Equity', 'Borrowing', 'Provision', 'Lease', 'Pension',
+                  'Deferred Tax', 'Income Tax', 'Property', 'Plant', 'Equipment', 'Goodwill']
         flows = ['Revenue', 'Other Income', 'Expense', 'Loss', 'Cost of Sales', 'Depreciation']
         modifiers = ['Current', 'Non-current', 'Intangible', 'Investment', 'Financing', 'Operating']
 
